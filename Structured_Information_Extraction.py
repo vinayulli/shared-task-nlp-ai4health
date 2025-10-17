@@ -107,11 +107,11 @@ dspy.configure(lm=lm)
 ie = dspy.Predict(MedicalDialogueToStructured)
 
 
-folder_location = r"C:\Users\ulliv\Downloads\test_data_release\test_data_release\Kannada\Dialogues"
+folder_location = r"C:\Users\ulliv\Downloads\test_data_release\test_data_release\Kannada\Dialogues"   # Test datset folder location. I have run seperately for each language due to timeout issues. 
 list_of_files = os.listdir(folder_location)    
 i=0
 print(len(list_of_files))
-output_folder = r"C:\Users\ulliv\Desktop\vinay\code\convert_to_gguf\kannada_output"
+output_folder = r"C:\Users\ulliv\Desktop\vinay\code\convert_to_gguf\kannada_output"   # output folder location to save the files. 
 list_of_output_files = os.listdir(output_folder)
 list_of_output_files = [file.split('.')[0] for file in list_of_output_files]
 for file in list_of_files:
@@ -126,5 +126,6 @@ for file in list_of_files:
         dialogue_text = dialogue_text.lower()
         resp = ie(dialogue_text=dialogue_text)
         result = resp.structured
-        with open(os.path.join(output_folder, f"structured_information_{file.split('.')[0]}.json"), "w") as f:
+        with open(os.path.join(output_folder, f"Team_KV_SummaryKnV_Closed_{file.split('.')[0]}.json"), "w") as f:
+
             json.dump(result, f, indent=2)
